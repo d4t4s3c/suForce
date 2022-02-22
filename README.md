@@ -1,6 +1,6 @@
 # suForce
 
-**su Brute Force - Password - User**
+**su Brute Force - User Password**
 
 ![](/screenshot.png)
 

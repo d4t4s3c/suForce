@@ -4,7 +4,7 @@
 
 ![](/screenshot.png)
 
-- <kbd>Download/kbd>
+- <kbd>Download</kbd>
 
 ```cmd
 user@vitim:~$ cd /dev/shm

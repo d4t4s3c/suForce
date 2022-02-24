@@ -101,7 +101,7 @@ while read password; do
         exit 0
     fi
 done < $wordlist
-echo -e "\r$Red$var24 $Red$var18 $White$var19$End"
+echo -e "\r$Red$var23 $Red$var18 $White$var19$End"
 echo ""
 sleep 2
 exit 0

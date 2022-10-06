@@ -1,6 +1,6 @@
 # suForce
 
-**su Brute Force - User Password**
+**`suForce` performs `brute force attacks` on `user passwords` by abusing the `su` binary**
 
 ![](/screenshot.png)
 

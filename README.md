@@ -2,7 +2,7 @@
 
 **`suForce` performs `brute force` attacks on user `passwords` by abusing the `su` binary.**
 
-![](/1.png)
+![](/screenshot.png)
 
 - <kbd>Download</kbd>
 

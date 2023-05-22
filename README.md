@@ -6,7 +6,7 @@
 
 - <kbd>Download</kbd>
 
-  * suForce
+suForce
 
 ```cmd
 user@vitim:~$ cd /dev/shm

@@ -4,9 +4,7 @@
 
 ![](/screenshot.png)
 
-- <kbd>Download</kbd>
-
-suForce
+- <kbd>Download suForce</kbd>
 
 ```cmd
 user@vitim:~$ cd /dev/shm
@@ -14,9 +12,9 @@ user@vitim:~$ wget -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/su
 user@vitim:~$ chmod +x suForce
 ```
 
-Wordlist (Optional)
+- <kbd>Download Wordlist (Optional)</kbd>
 
-```scmd
+```cmd
 user@vitim:~$ wget -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/techyou.txt"
 user@vitim:~$ wget -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/top12000.txt"
 ```

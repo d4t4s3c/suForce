@@ -1,6 +1,6 @@
 # suForce
 
-suForce performs brute force attacks on user passwords by abusing the su binary.
+**suForce allows you to crack a user's password using brute force with the su binary.**
 
 ![](/screenshot.png)
 

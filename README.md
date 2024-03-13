@@ -1,6 +1,6 @@
 # suForce
 
-**suForce allows you to crack a user's password using brute force with the su binary.**
+**Get user password.**
 
 ![](/screenshot.png)
 

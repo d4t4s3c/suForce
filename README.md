@@ -1,6 +1,6 @@
 # suForce
 
-**Get user password.**
+**Obtains a user's password by abusing the su binary.**
 
 ![](/screenshot.png)
 

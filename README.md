@@ -1,6 +1,6 @@
 # **suForce**
 
-### Obtains a user's password by abusing the su binary.
+#### Obtains a user's password by abusing the su binary.
 
 ![](/img/img.png)
 

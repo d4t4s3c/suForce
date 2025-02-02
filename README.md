@@ -17,13 +17,6 @@ wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForc
 chmod +x suForce
 ```
 
-## Download Wordlist (Optional)
-
-```sh
-wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/refs/heads/main/techyou.txt"
-wget --no-check-certificate -q "https://raw.githubusercontent.com/d4t4s3c/suForce/refs/heads/main/top12000.txt"
-```
-
 ## Usage
 
 ```sh

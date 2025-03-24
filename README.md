@@ -5,7 +5,7 @@
 
 ### Overview
 
-If you have a **username** and want to try to obtain their **password**, `suForce` will make authentication attempts against that user from the [su](https://manpages.ubuntu.com/manpages/xenial/man1/su.1.html) binary, performing a **brute force** attack until a successful collision occurs.
+If you have a **username** and want to try to obtain their **password**, `suForce` will make authentication attempts against that user from the [[su](https://manpages.ubuntu.com/manpages/xenial/man1/su.1.html)] binary, performing a **brute force** attack until a successful collision occurs.
 
 ![](/img/img.png)
 
